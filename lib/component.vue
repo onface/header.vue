@@ -1,5 +1,5 @@
 <template>
-	<div class="face-header">
+	<div :class="{'face-header': true, 'face-header--nav-show': switchShow}">
 		<div class="face-header-inner">
 			<a href="/" class="face-header-logo">
 				<img :src="media(logo)" alt="" class="face-header-logo-photo" />
@@ -7,7 +7,7 @@
 					<slot name="title"></slot>
 				</span>
 			</a>
-			<span class="face-header-navSwitch">
+			<span class="face-header-navSwitch" @click="switchHeader">
 				<span class="face-header-navSwitch-open">
 					<face-icon type="bars"/>
 				</span>
@@ -34,7 +34,7 @@
 
 
 <script>
-import util from "./util"
+import util from "util.vue"
 import Icon from "icon.vue"
 export default {
   name: 'face-header',
@@ -43,11 +43,14 @@ export default {
 	  'face-icon': Icon
   },
   methods: {
-      media: util.media
+      media: util.media,
+	  switchHeader: function () {
+		  this.switchShow = !this.switchShow
+	  }
   },
   data () {
     return {
-
+		switchShow	: false
     }
   }
 }

@@ -7,7 +7,7 @@
 
 
 <script>
-import util from "./util"
+import util from "util.vue"
 export default {
   name: 'face-header-link',
   props: require('./link-props'),
