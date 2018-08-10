@@ -23,6 +23,7 @@
         "util.vue": "^0.1.0"
     },
     "optionalDependencies": {
+        "face-message": "^0.1.1",
         "vue": "^2.5.13"
     },
     "devDependencies": {

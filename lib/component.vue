@@ -1,7 +1,11 @@
 <template>
-	<div :class="{'face-header': true, 'face-header--nav-show': switchShow}">
+	<div  v-on="$listeners" :class="{'face-header': true, 'face-header--nav-show': switchShow}">
 		<div class="face-header-inner">
-			<a href="/" class="face-header-logo">
+			<a
+				:href="logoHref"
+				class="face-header-logo"
+				@click="$emit('click-logo', $event)"
+			>
 				<img :src="media(logo)" alt="" class="face-header-logo-photo" />
 				<span class="face-header-logo-title">
 					<slot name="title"></slot>
@@ -19,14 +23,7 @@
 				<slot></slot>
 			</div>
 			<div class="face-header-tool">
-				<!-- <a href="#" class="face-header-tool-item">
-					<img src="./media/user.svg" alt="" class="face-header-tool-item-icon" />
-					<span class="face-header-tool-item-label">Admin</span>
-				</a> -->
-				<a href="#" class="face-header-tool-item">
-					<img src="https://onface.github.io/design/media/onface/logout.svg" alt="" class="face-header-tool-item-icon" />
-					<span class="face-header-tool-item-label">退出</span>
-				</a>
+				<slot name="tool"></slot>
 			</div>
 		</div>
 	</div>

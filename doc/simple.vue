@@ -1,9 +1,14 @@
 <template>
-	<face-header logo="@media-onface/logo.svg" >
+	<face-header
+		logo="@media-onface/logo.svg"
+		logo-href="https://onface.live/header.vue"
+		@click-logo.prevent="handleClickLogo"
+		>
+		<template slot="title">onface</template>
 		<face-header-link active="true" href="/" icon="@media-cute/computer.svg" >
 			首页
 		</face-header-link>
-		<face-header-link @click.stop="handleProject" icon="@media-cute/project.svg" >
+		<face-header-link @click.prevent="handleProject" icon="@media-cute/project.svg" >
 			项目
 		</face-header-link>
 		<face-header-link href="/" icon="@media-cute/email.svg" >
@@ -18,17 +23,32 @@
 		<face-header-link href="/" icon="@media-cute/settings.svg" >
 			设置
 		</face-header-link>
+		<template slot="tool">
+			<face-header-link href="/logout" icon="@media-onface/logout.svg" >
+				退出
+			</face-header-link>
+		</template>
 	</face-header>
 </template>
 
 <script>
-import Header, { HeaderLink } from "header.vue"
+import Header, { HeaderLink, HeaderTool } from "header.vue"
+import message from "face-message"
 require('vue').use(Header)
 require('vue').use(HeaderLink)
+require('vue').use(HeaderTool)
 export default {
+	data: function () {
+		return {
+			some: 'abc'
+		}
+	},
 	methods: {
+		handleClickLogo: (e) => {
+			message.info('logo')
+		},
 		handleProject: (e) => {
-			alert('click project')
+			message.info('project')
 		}
 	}
 }
